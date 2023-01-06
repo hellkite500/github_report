@@ -2,4 +2,5 @@ org: NOAA-OWP
 token: ''
 repo_type: 'public'
 destination: ./2023_01_05
-
+#Put any date here with a year and month you want to report data for
+date: 2022-12-01
