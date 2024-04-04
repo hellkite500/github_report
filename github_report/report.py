@@ -23,9 +23,7 @@ def m_get_events(self, public=github.GithubObject.NotSet):
 
 #github.AuthenticatedUser.get_events = m_get_events
 
-#Need unmerged PR referenced below for GithubRetry
-#from github import Github, GithubRetry
-from github import Github
+from github import Github, GithubRetry
 from pathlib import Path
 from datetime import datetime
 from typing import TYPE_CHECKING
@@ -147,12 +145,8 @@ def make_report(organization: str, api_token: str, destination: Path, type: str 
         type            the type of repositories to record activity for, may be 'all', 'public', 'private'
 
 	"""
-    #requires an unmerged PR upstream to use this
-    #Rate limit retries provided by GithubRetry are currently only available from this PR branch
-    #https://github.com/PyGithub/PyGithub/pull/2387
-    #so to use this, that branch needs to be pulled and pygithub installed from there.
-    #gh = Github(api_token, retry=GithubRetry(total=11))
-    gh = Github(api_token)
+    #Rate limit retries 
+    gh = Github(api_token, retry=GithubRetry(total=11))
 
     org = gh.get_organization(organization)
     user = gh.get_user(login=user) if user else gh.get_user()
