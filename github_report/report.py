@@ -132,7 +132,7 @@ def process_issue_event(event: github.Event.Event, date: datetime = datetime.now
             repo = event.repo.name
             return template.format(when=when, repo=repo, num=num, title=title, url=url)
 
-def make_report(organization: str, api_token: str, destination: Path, type: str = 'public', date: datetime = datetime.now()):
+def make_report(organization: str, api_token: str, destination: Path, type: str = 'public', date: datetime = datetime.now(), user: str = ''):
     """
         Find all user meta data in the given organization and use the api_token to scrape data
 
@@ -155,8 +155,7 @@ def make_report(organization: str, api_token: str, destination: Path, type: str 
     gh = Github(api_token)
 
     org = gh.get_organization(organization)
-    user = gh.get_user()
-    #user = gh.get_user(login='anyGHuserhere')
+    user = gh.get_user(login=user) if user else gh.get_user()
     events = m_get_events(user)
     #print(events.totalCount)
     #Process PullRequestReviewEvent (action created), IssueEvent (action created), PullRequestEvent (action created), ReleaseEvent (action published)

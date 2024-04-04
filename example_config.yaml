@@ -1,5 +1,8 @@
 org: NOAA-OWP
 token: ''
+#by default, uses the GH user associated with the above token
+#to generate a report for a different user put the username here
+user: ''
 repo_type: 'public'
 destination: ./2023_01_05
 #Put any date here with a year and month you want to report data for

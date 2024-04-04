@@ -25,7 +25,7 @@ def main():
 
     config = read_config(Path(args.config))
     #TODO validate config options???
-    make_report(config['org'], config['token'], Path(config['destination']), config['repo_type'], config['date'])
+    make_report(config['org'], config['token'], Path(config['destination']), config['repo_type'], config['date'], config['user'])
 
 
 if __name__ == '__main__':
